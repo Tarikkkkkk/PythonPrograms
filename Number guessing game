@@ -1,0 +1,27 @@
+import random
+import math
+
+begin = int(input("Enter a lower bound: "))
+end = int(input("Enter a bigger bound: "))
+
+num = random.randint(begin, end)
+min_guess = round(math.log2(end - begin + 1))
+num_guess = 0
+n = 1
+guess = True
+
+print(f"You have only {min_guess} attempts to guess a random number in your specified range")
+
+for i in range(min_guess):
+    user_num = int(input("Guess a random number: "))
+    if user_num > num:
+        print("Try again! You guessed too high.")
+    elif user_num < num:
+        print("Try again! You guessed too small.")
+    else:
+        print(f"Congratulations! You guessed a number in {i+1} attempts.")
+        guess = False
+        break
+
+if guess:
+    print(f"The number is {num}. Better luck next time!")
