@@ -1,0 +1,30 @@
+import random
+
+words = ["apple",  "banana", "mango", "strawberry", "orange", "grape", "pineapple", "apricot",
+         "lemon", "coconut", "watermelon", "cherry", "papaya", "berry", "peach", "lychee", "muskmelon"]
+
+chosen_word = random.choice(words)
+n = len(chosen_word) + 2
+process = ["_"] * len(chosen_word)
+print(f"You have {n} chances to guess a word")
+guessed = False
+for i in range(n):
+    letter = input("Guess a word by typing a single letter: ")
+    if len(letter) != 1:
+        print("Next time you need to type only one letter!")
+    else:
+        if letter in chosen_word:
+            for index, char in enumerate(chosen_word):
+                if char == letter:
+                    process[index] = letter
+            print("You guessed a letter: ", "".join(process))
+        else:
+            print("You did not guess a letter!")
+
+    if "".join(process) == chosen_word:
+        print(f"You guessed a word: {chosen_word}")
+        guessed = True
+        break
+
+if not guessed:
+    print(f"You did not solve a word within {n} chances. The word is {chosen_word} Try again next time!")
